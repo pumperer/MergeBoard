@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using alpoLib.Res;
 using alpoLib.UI;
 using MergeBoard.Data.Table;
 using UnityEngine;
@@ -23,7 +24,19 @@ namespace MergeBoard.UI.Scenes
         public void CreateMenu(List<BoardDefineBase> boardDefines)
         {
             loadingProgressComp.gameObject.SetActive(false);
+            foreach (var boardDefine in boardDefines)
+            {
+                var b = GenericPrefab.InstantiatePrefab<BoardButton>();
+                b.transform.SetParentEx(menuObject.transform);
+                b.Initialize(boardDefine, OnClickBoardButton);
+            }
+            
             menuObject.gameObject.SetActive(true);
+        }
+
+        private void OnClickBoardButton(BoardDefineBase obj)
+        {
+            
         }
     }
 }
