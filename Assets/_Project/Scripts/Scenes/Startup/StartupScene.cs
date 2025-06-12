@@ -22,7 +22,7 @@ namespace MergeBoard.Scenes
 
         public override void OnOpen()
         {
-            
+            SceneManager.Instance.OpenSceneAsync<SplashScene>();
         }
     }
 }

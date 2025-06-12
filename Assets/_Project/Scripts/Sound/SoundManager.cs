@@ -70,6 +70,9 @@ namespace MergeBoard.Sound
 	{
 		private readonly Dictionary<BGMChannel, AudioSource> _bgmChannel = new();
 		private readonly Dictionary<SFXChannel, AudioSource> _sfxChannel = new();
+		
+		private readonly Dictionary<string, AudioClip> _bgmCache = new();
+		private readonly Dictionary<string, AudioClip> _sfxCache = new();
 
 		private BGMChannel _currentBGMChannel = BGMChannel.None;
 		private SFXChannel _currentSFXChannel = SFXChannel.None;
@@ -77,13 +80,7 @@ namespace MergeBoard.Sound
 		private BGMChannel _nextBGMChannel = BGMChannel.None;
 		private SFXChannel _nextSFXChannel = SFXChannel.None;
 
-		protected override void OnAwakeEvent()
-		{
-			base.OnAwakeEvent();
-			Initialize();
-		}
-
-		public void Initialize()
+		private void CreateChannels()
 		{
 			_bgmChannel.Clear();
 			for (int i = (int)BGMChannel.None + 1; i < (int)BGMChannel.MAX; i++)
@@ -114,12 +111,10 @@ namespace MergeBoard.Sound
 
 		public async Awaitable PreloadAsync()
 		{
+			CreateChannels();
 			await PreloadBGMAsync();
 			await PreloadSFXAsync();
 		}
-
-		private Dictionary<string, AudioClip> _bgmCache = new();
-		private Dictionary<string, AudioClip> _sfxCache = new();
 		
 		private async Awaitable PreloadBGMAsync()
 		{
@@ -127,7 +122,9 @@ namespace MergeBoard.Sound
 			var handleList = new List<AsyncOperationHandle<AudioClip>>();
 			foreach (BGMKey key in bgms)
 			{
-				var addrKey = $"Addr/Sounds/BGM/{key}";
+				if (key == BGMKey.None)
+					continue;
+				var addrKey = $"Addr/Sound/BGM/{key}";
 				var h = Addressables.LoadAssetAsync<AudioClip>(addrKey);
 				h.Completed += handle =>
 				{
@@ -145,7 +142,9 @@ namespace MergeBoard.Sound
 			var handleList = new List<AsyncOperationHandle<AudioClip>>();
 			foreach (SFXKey key in sfxs)
 			{
-				var addrKey = $"Addr/Sounds/SFX/{key}";
+				if (key == SFXKey.None)
+					continue;
+				var addrKey = $"Addr/Sound/SFX/{key}";
 				var h = Addressables.LoadAssetAsync<AudioClip>(addrKey);
 				h.Completed += handle =>
 				{
@@ -162,9 +161,12 @@ namespace MergeBoard.Sound
 			if (key == BGMKey.None)
 				return;
 
-			var clip = Resources.Load<AudioClip>($"Sounds/BGM/{key}");
-			if (clip == null)
+			var addrKey = $"Addr/Sound/BGM/{key}";
+			if (!_bgmCache.TryGetValue(addrKey, out var clip))
+			{
+				Debug.LogWarning($"BGM not found: {addrKey}");
 				return;
+			}
 
 			if (_nextBGMChannel == BGMChannel.None)
 				_nextBGMChannel = BGMChannel.BGM_1;
@@ -210,9 +212,12 @@ namespace MergeBoard.Sound
 			if (key == SFXKey.None)
 				return;
 
-			var clip = Resources.Load<AudioClip>($"Sounds/SFX/{key}");
-			if (clip == null)
+			var addrKey = $"Addr/Sound/SFX/{key}";
+			if (!_sfxCache.TryGetValue(addrKey, out var clip))
+			{
+				Debug.LogWarning($"SFX not found: {addrKey}");
 				return;
+			}
 
 			if (_nextSFXChannel == SFXChannel.None)
 				_nextSFXChannel = SFXChannel.SFX_1;
