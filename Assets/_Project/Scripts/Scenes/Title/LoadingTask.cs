@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using alpoLib.Data;
 using alpoLib.UI.Scene;
 using alpoLib.Util;
+using MergeBoard.Data.Table;
 using UnityEngine;
 
 namespace MergeBoard.Scenes
@@ -78,20 +81,31 @@ namespace MergeBoard.Scenes
     
     public class LoadingTaskShowMenu : LoadingTaskBase
     {
+        private class TemporaryDataHolder : DataManagerHolder
+        {
+            public List<BoardDefineBase> GetBoardDefines()
+            {
+                return TableDataManager.GetLoader<IBoardDefineTableMapper>().GetBoardDefineBaseList();
+            }
+        }
+        private TemporaryDataHolder _temporaryDataHolder;
+        
         public override int Progress => 100;
         public override string ProgressMessage => "Let's Go!";
         
-        private readonly Action _switchToMenuAction;
+        private readonly Action<List<BoardDefineBase>> _switchToMenuAction;
         
-        public LoadingTaskShowMenu(Action switchToMenuAction)
+        public LoadingTaskShowMenu(Action<List<BoardDefineBase>> switchToMenuAction)
         {
+            _temporaryDataHolder = new TemporaryDataHolder();
             _switchToMenuAction = switchToMenuAction;
         }
         
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)
         {
             await Awaitable.WaitForSecondsAsync(0.5f);
-            _switchToMenuAction?.Invoke();
+            var list = _temporaryDataHolder.GetBoardDefines();
+            _switchToMenuAction?.Invoke(list);
         }
     }
 }

@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using alpoLib.Data;
 using alpoLib.UI.Scene;
+using MergeBoard.Data.Table;
 using MergeBoard.UI;
 using MergeBoard.UI.Scenes;
 using UnityEngine;

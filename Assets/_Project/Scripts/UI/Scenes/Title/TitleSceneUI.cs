@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using alpoLib.UI;
+using MergeBoard.Data.Table;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +20,7 @@ namespace MergeBoard.UI.Scenes
             loadingProgressComp.SetText(message);
         }
 
-        public void CreateMenu()
+        public void CreateMenu(List<BoardDefineBase> boardDefines)
         {
             loadingProgressComp.gameObject.SetActive(false);
             menuObject.gameObject.SetActive(true);
