@@ -19,6 +19,9 @@ namespace MergeBoard.Scenes
             await SoundManager.Instance.PreloadAsync();
             SoundManager.Instance.PlaySFX(SFXKey.sfx_splash);
             logoObject.SetActive(true);
+            await Awaitable.WaitForSecondsAsync(2f);
+
+            _ = SceneManager.Instance.OpenSceneAsync<TitleScene>();
         }
     }
 }
