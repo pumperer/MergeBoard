@@ -15,7 +15,7 @@
         "com.alpolib.core": "1.0.0",
         "com.alpolib.util": "1.0.0"
       },
-      "hash": "bc736726010d8bec2fdcd01c4e61f0980026a046"
+      "hash": "dc36d85cf019891c8ec12f4c2ca4107d0a8db6b7"
     },
     "com.alpolib.res": {
       "version": "https://github.com/pumperer/AlpoLib-Res.git",
@@ -36,7 +36,7 @@
         "com.alpolib.core": "1.0.0",
         "com.unity.inputsystem": "1.14.0"
       },
-      "hash": "2a450f4e43ec07948bc40799f7a71b70441f5f60"
+      "hash": "ad4e6b42e7a622596e3f9a7acfb7b6ca5329e41e"
     },
     "com.alpolib.util": {
       "version": "https://github.com/pumperer/AlpoLib-Util.git",
@@ -46,7 +46,7 @@
         "com.alpolib.core": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "3.2.1"
       },
-      "hash": "bff42961ad978910859631eb679f1c4d1fdb2d23"
+      "hash": "d1d12efc9b7408768bc132867bdee046b8819170"
     },
     "com.unity.2d.animation": {
       "version": "10.2.0",
