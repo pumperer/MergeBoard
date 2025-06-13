@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using alpoLib.Res;
 using alpoLib.UI;
+using alpoLib.UI.Scene;
 using MergeBoard.Data.Table;
+using MergeBoard.Scenes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,9 +36,12 @@ namespace MergeBoard.UI.Scenes
             menuObject.gameObject.SetActive(true);
         }
 
-        private void OnClickBoardButton(BoardDefineBase obj)
+        private void OnClickBoardButton(BoardDefineBase boardDefine)
         {
-            
+            SceneManager.Instance.OpenSceneAsync<BoardScene>(param: new BoardSceneParam
+            {
+                BoardId = boardDefine.Id
+            });
         }
     }
 }

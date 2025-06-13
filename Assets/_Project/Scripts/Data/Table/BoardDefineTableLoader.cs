@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using alpoLib.Core.Foundation;
 using alpoLib.Data;
 using alpoLib.Data.Serialization;
@@ -27,6 +28,7 @@ namespace MergeBoard.Data.Table
 
     public interface IBoardDefineTableMapper : ITableDataMapperBase
     {
+        BoardDefineBase GetBoardDefineBase(int boardId);
         List<BoardDefineBase> GetBoardDefineBaseList();
     }
     
@@ -40,6 +42,11 @@ namespace MergeBoard.Data.Table
             boardDefineBaseList = new List<BoardDefineBase>(loadedElementList);
         }
 
+        public BoardDefineBase GetBoardDefineBase(int boardId)
+        {
+            return boardDefineBaseList.FirstOrDefault(board => board.Id == boardId);
+        }
+        
         public List<BoardDefineBase> GetBoardDefineBaseList()
         {
             return boardDefineBaseList;
