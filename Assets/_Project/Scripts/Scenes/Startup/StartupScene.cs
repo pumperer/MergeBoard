@@ -14,6 +14,8 @@ namespace MergeBoard.Scenes
             Addressables.InitializeAsync(true).WaitForCompletion();
             LocalizationManager.Init(true);
             LocalizationManager.Instance.Initialize("Default");
+            OnDemandAtlasManager.Init(true);
+            OnDemandAtlasManager.Instance.LoadPreloadAtlases();
             alpoLib.Core.Module.Initialize();
             alpoLib.Data.Module.Initialize(new alpoLib.Data.DataModuleInitParam());
             CoroutineTaskManager.Init(true);

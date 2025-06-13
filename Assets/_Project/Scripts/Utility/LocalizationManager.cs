@@ -1,3 +1,4 @@
+using System;
 using alpoLib.Util;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -96,6 +97,39 @@ namespace MergeBoard.Utility
         public void ChangeLocalizeStringReference(LocalizedString ls, string key)
         {
             ls?.SetReference(_tableCollectionName, key);
+        }
+
+        public static string MakeTimeSpanString(TimeSpan span)
+        {
+            var dayString = Instance.GetString("UI_Label_Day");
+            var hourString = Instance.GetString("UI_Label_Hour");
+            var minuteString = Instance.GetString("UI_Label_Minute");
+            var secondString = Instance.GetString("UI_Label_Second");
+            string text;
+            if (span.Days > 0)
+            {
+                text = $"{span.Days}{dayString}";
+                if (span.Hours > 0)
+                    text = $"{text} {span.Hours}{hourString}";
+            }
+            else if (span.Hours > 0)
+            {
+                text = $"{span.Hours}{hourString}";
+                if (span.Minutes > 0)
+                    text = $"{text} {span.Minutes}{minuteString}";
+            }
+            else if (span.Minutes > 0)
+            {
+                text = $"{span.Minutes}{minuteString}";
+                if (span.Seconds > 0)
+                    text = $"{text} {span.Seconds}{secondString}";
+            }
+            else
+            {
+                text = $"{span.Seconds}{secondString}";
+            }
+
+            return text;
         }
     }
 }

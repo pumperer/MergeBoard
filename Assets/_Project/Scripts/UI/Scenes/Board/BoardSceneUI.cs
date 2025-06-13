@@ -5,5 +5,6 @@ namespace MergeBoard.UI.Scenes
 {
     public class BoardSceneUI : SceneUIBase
     {
+        
     }
 }

@@ -18,6 +18,7 @@ namespace MergeBoard.Data.Table
     
     public interface IQuestDefineTableMapper : ITableDataMapperBase
     {
+        QuestDefineBase GetQuestDefineBase(int boardId, int questId);
         QuestDefineBase GetRandomQuestDefine(int boardId);
     }
     
@@ -33,6 +34,13 @@ namespace MergeBoard.Data.Table
                 .ToDictionary(g => g.Key, g => g.ToList());
         }
 
+        public QuestDefineBase GetQuestDefineBase(int boardId, int questId)
+        {
+            if (!_questDefinesByBoardId.TryGetValue(boardId, out var list))
+                return null;
+            return list.FirstOrDefault(q => q.Id == questId);
+        }
+        
         public QuestDefineBase GetRandomQuestDefine(int boardId)
         {
             if (!_questDefinesByBoardId.TryGetValue(boardId, out var list))

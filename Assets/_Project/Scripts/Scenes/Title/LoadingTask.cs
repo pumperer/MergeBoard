@@ -63,7 +63,7 @@ namespace MergeBoard.Scenes
         
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)
         {
-            await alpoLib.Data.Module.LoadTableAsync();
+            await alpoLib.Data.Module.LoadTableDataAsync();
             await Awaitable.WaitForSecondsAsync(0.5f);
         }
     }
@@ -75,6 +75,7 @@ namespace MergeBoard.Scenes
         
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)
         {
+            await alpoLib.Data.Module.LoadUserDataAsync();
             await Awaitable.WaitForSecondsAsync(0.5f);
         }
     }
