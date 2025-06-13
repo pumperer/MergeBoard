@@ -26,6 +26,7 @@ namespace MergeBoard.UI.Scenes
         public void InitFeatures()
         {
             AddFeatureUI(new SelectItemFeatureUI(this, _hudItemController.FindFirstHudItem<ISelectItemInfo>()));
+            AddFeatureUI(new RandomBoxPopFeatureUI(this, _hudItemController.FindFirstHudItem<IRandomBoxPop>()));
             
             foreach (var featureUI in _uiFeatures)
                 InitOneFeature(featureUI);

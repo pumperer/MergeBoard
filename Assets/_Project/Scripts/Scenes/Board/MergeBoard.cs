@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using alpoLib.Res;
 using alpoLib.Util;
+using MergeBoard.Data;
 using MergeBoard.Data.Composition;
 using MergeBoard.Data.Table;
 using MergeBoard.Data.User;
@@ -19,6 +20,7 @@ namespace MergeBoard.Scenes.Board
         {
             public BoardDefineBase BoardDefine;
             public IItemTableLoader ItemTableMapper;
+            public IPopProbabilityTableMapper PopProbabilityTableMapper;
             public IUserInfoMapper UserInfoMapper;
             public IUserBoardMapper UserBoardMapper;
             public IUserItemMapper UserItemMapper;
@@ -68,6 +70,7 @@ namespace MergeBoard.Scenes.Board
         private void InitFeatures()
         {
             AddFeature(new SelectItemFeature(this));
+            AddFeature(new RandomBoxPopFeature(this, _context.UserInfoMapper));
         }
 
         public void OnOpen()
@@ -286,6 +289,22 @@ namespace MergeBoard.Scenes.Board
         #endregion
         
         #region Pop
+
+        public bool PopItemFromRandomBox(Vector3 pos)
+        {
+            if (!HasEmptySlot())
+                return false;
+
+            var poppedItemId = _context.PopProbabilityTableMapper.GetPopItemIdByRandom(PopType.FromRandomBox, CurrentBoardId);
+            if (poppedItemId == 0)
+                return false;
+            
+            var emptySlot = FindNearestEmptySlot(null);
+            var newItemData = _context.UserItemMapper.AddItem(poppedItemId);
+            Pop(newItemData, emptySlot, pos);
+            
+            return true;
+        }
         
         public Item Pop(Item item)
         {
