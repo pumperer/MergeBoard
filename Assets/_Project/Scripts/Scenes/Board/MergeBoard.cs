@@ -72,12 +72,16 @@ namespace MergeBoard.Scenes.Board
 
         public void OnOpen()
         {
+            foreach (var feature in _features)
+                feature.OnOpen();
+            
             OnSelectItem(null);
         }
         
         public void OnClose()
         {
-            
+            foreach (var feature in _features)
+                feature.OnClose();
         }
         
         private void CreateBoard()
@@ -204,7 +208,7 @@ namespace MergeBoard.Scenes.Board
                 return;
 
             _context.UserInfoMapper.AddGold(item.ItemData.SellValue);
-            _context.UserItemMapper.RemoveItem(item.ItemData.Id);
+            _context.UserItemMapper.RemoveItem(item.ItemData.UserDataId);
             RefreshQuestStatus();
         }
         

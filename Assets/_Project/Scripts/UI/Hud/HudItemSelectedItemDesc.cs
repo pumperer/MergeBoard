@@ -1,3 +1,4 @@
+using System;
 using alpoLib.UI.Hud;
 using MergeBoard.Data.Composition;
 using MergeBoard.Scenes.Board;
@@ -16,18 +17,19 @@ namespace MergeBoard.UI.Hud
         [SerializeField] private GameObject sellButton;
         [SerializeField] private TMP_Text sellPriceText;
         
-        public Item SelectedItem = null;
+        private Item _selectedItem;
+        private Action<Item> _onSellItem;
         
         public void OnClickSellButton()
         {
-            Debug.Log("Sell button clicked");
+            _onSellItem?.Invoke(_selectedItem);
         }
 
         public void OnSelectItem(Item item)
         {
-            SelectedItem = item;
+            _selectedItem = item;
             
-            if (!SelectedItem || SelectedItem.ItemData == null)
+            if (!_selectedItem || _selectedItem.ItemData == null)
             {
                 if (itemNameText)
                     itemNameText.text = string.Empty;
@@ -39,14 +41,19 @@ namespace MergeBoard.UI.Hud
             else
             {
                 if (itemNameText)
-                    itemNameText.text = SelectedItem.ItemData.GetName(true);
+                    itemNameText.text = _selectedItem.ItemData.GetName(true);
                 if (itemDescText)
-                    itemDescText.text = SelectedItem.ItemData.GetDescription();
+                    itemDescText.text = _selectedItem.ItemData.GetDescription();
                 if (sellPriceText)
-                    sellPriceText.text = $"{SelectedItem.ItemData.SellValue}";
+                    sellPriceText.text = $"{_selectedItem.ItemData.SellValue}";
                 if (sellButton)
-                    sellButton.gameObject.SetActive(SelectedItem.ItemData.SellValue > 0);
+                    sellButton.gameObject.SetActive(_selectedItem.ItemData.SellValue > 0);
             }
+        }
+
+        public void SetSellItemEvent(Action<Item> onSellItem)
+        {
+            _onSellItem = onSellItem;
         }
     }
 }

@@ -1,11 +1,12 @@
+using System;
 using MergeBoard.UI.Scenes;
-using UnityEngine;
 
 namespace MergeBoard.Scenes.Board.Feature.UI
 {
     public interface ISelectItemInfo
     {
         void OnSelectItem(Item item);
+        void SetSellItemEvent(Action<Item> onSellItem);
     }
     
     public class SelectItemFeatureUI : MergeFeatureUIBase<SelectItemFeature>
@@ -20,6 +21,11 @@ namespace MergeBoard.Scenes.Board.Feature.UI
         public void OnSelectItem(Item item)
         {
             _itemInfo?.OnSelectItem(item);
+        }
+
+        public void SetSellItemEvent(Action<Item> onSellItem)
+        {
+            _itemInfo?.SetSellItemEvent(onSellItem);
         }
     }
 }
