@@ -2,15 +2,17 @@ using System;
 using alpoLib.Res;
 using alpoLib.Util;
 using MergeBoard.Data.Table;
+using MergeBoard.Utility;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 
 namespace MergeBoard.UI
 {
     [PrefabPath("Addr/UI/Prefabs/Title/BoardButton.prefab")]
     public class BoardButton : CachedUIBehaviour
     {
-        [SerializeField] private TMP_Text boardNameText;
+        [SerializeField] private LocalizeStringEvent boardNameLocalize;
         
         private BoardDefineBase _boardDefine;
         private Action<BoardDefineBase> _clickAction;
@@ -20,9 +22,7 @@ namespace MergeBoard.UI
             _boardDefine = boardDefine;
             _clickAction = clickAction;
 
-            if (boardNameText)
-            {
-            }
+            LocalizationManager.Instance.ChangeLocalizeStringEvent(boardNameLocalize, boardDefine.NameStringKey);
         }
         
         public void OnClickButton()

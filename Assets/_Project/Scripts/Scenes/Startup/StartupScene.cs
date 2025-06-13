@@ -1,5 +1,6 @@
 using alpoLib.UI.Scene;
 using alpoLib.Util;
+using MergeBoard.Utility;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -10,7 +11,9 @@ namespace MergeBoard.Scenes
         protected override void OnAwake()
         {
             base.OnAwake();
-            Addressables.InitializeAsync(true);
+            Addressables.InitializeAsync(true).WaitForCompletion();
+            LocalizationManager.Init(true);
+            LocalizationManager.Instance.Initialize("Default");
             alpoLib.Core.Module.Initialize();
             alpoLib.Data.Module.Initialize(new alpoLib.Data.DataModuleInitParam());
             CoroutineTaskManager.Init(true);
