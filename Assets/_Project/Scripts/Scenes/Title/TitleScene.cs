@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using alpoLib.Data;
 using alpoLib.UI.Scene;
+using alpoLib.Util;
 using MergeBoard.Data.Table;
 using MergeBoard.UI;
 using MergeBoard.UI.Scenes;
@@ -23,8 +24,14 @@ namespace MergeBoard.Scenes
             _loadingTaskMachine = new LoadingTaskMachine(this);
             _loadingTaskMachine.ClearState();
             _loadingTaskMachine.AddState(new LoadingTaskHello());
-            _loadingTaskMachine.AddState(new LoadingTaskLoadTableData());
-            _loadingTaskMachine.AddState(new LoadingTaskLoadUserData());
+            
+            var holder = GameStateManager.Instance.GetState<DataLoadCompleteHolder>(false);
+            if (holder == null)
+            {
+                _loadingTaskMachine.AddState(new LoadingTaskLoadTableData());
+                _loadingTaskMachine.AddState(new LoadingTaskLoadUserData());
+            }
+            
             _loadingTaskMachine.AddState(new LoadingTaskShowMenu(SceneUI.CreateMenu));
             _loadingTaskMachine.DoNextState();
         }

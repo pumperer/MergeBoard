@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace MergeBoard.Scenes
 {
+    public class DataLoadCompleteHolder : GameState
+    {
+    }
+    
     public interface ILoadingProgressChangeListener
     {
         void OnLoadingProgressChanged(LoadingTaskBase task);
@@ -100,6 +104,8 @@ namespace MergeBoard.Scenes
         {
             _temporaryDataHolder = new TemporaryDataHolder();
             _switchToMenuAction = switchToMenuAction;
+
+            GameStateManager.Instance.GetState<DataLoadCompleteHolder>();
         }
         
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)

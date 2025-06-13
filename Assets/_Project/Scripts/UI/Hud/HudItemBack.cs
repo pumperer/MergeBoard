@@ -1,4 +1,7 @@
+using alpoLib.Data;
 using alpoLib.UI.Hud;
+using alpoLib.UI.Scene;
+using MergeBoard.Scenes;
 using UnityEngine;
 
 namespace MergeBoard.UI.Hud
@@ -7,6 +10,9 @@ namespace MergeBoard.UI.Hud
     {
         protected override void OnClickHudItemEvent()
         {
+            var p = new DefaultUserDataSaveProcess();
+            p.Save();
+            SceneManager.Instance.OpenSceneAsync<TitleScene>();
         }
     }
 }
