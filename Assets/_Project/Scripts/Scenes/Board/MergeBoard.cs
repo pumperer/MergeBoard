@@ -2,16 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using alpoLib.Res;
+using alpoLib.Util;
 using MergeBoard.Data.Composition;
 using MergeBoard.Data.Table;
 using MergeBoard.Data.User;
+using MergeBoard.Scenes.Board.Feature;
 using MergeBoard.Sound;
 using UnityEngine;
 
 namespace MergeBoard.Scenes.Board
 {
     [PrefabPath("Addr/Board/Board.prefab")]
-    public class MergeBoard : MonoBehaviour, IUserBoardSerializer
+    public partial class MergeBoard : SingletonMonoBehaviour<MergeBoard>, IUserBoardSerializer
     {
         public class Context
         {
@@ -35,10 +37,11 @@ namespace MergeBoard.Scenes.Board
 
         public int CurrentBoardId => _context.BoardDefine.Id;
 
-        private void Awake()
+        protected override void OnAwakeEvent()
         {
+            base.OnAwakeEvent();
+            
             _inputManager = new BoardInputManager(this);
-
             UserItemData.OnDeleteUserItem += OnUserItemDelete;
         }
 
@@ -47,8 +50,9 @@ namespace MergeBoard.Scenes.Board
             _inputManager?.OnUpdate();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroyEvent()
         {
+            base.OnDestroyEvent();
             UserItemData.OnDeleteUserItem -= OnUserItemDelete;
         }
 
@@ -58,8 +62,19 @@ namespace MergeBoard.Scenes.Board
             CreateBoard();
             ResizeCameraOrthoSize(new Resolution { width = Screen.width, height = Screen.height });
             RefreshQuestStatus();
+            InitFeatures();
         }
 
+        private void InitFeatures()
+        {
+            AddFeature(new SelectItemFeature(this));
+        }
+
+        public void OnOpen()
+        {
+            OnSelectItem(null);
+        }
+        
         public void OnClose()
         {
             
@@ -127,11 +142,10 @@ namespace MergeBoard.Scenes.Board
                     if (bs != null)
                         bs.OnSelect(bs == comp);
                 });
-                // BoardHud.OnSelect(comp.CurrentItem);
+                OnSelectItem(comp.CurrentItem);
             }
             else
-                // BoardHud.OnSelect(null);
-                ;
+                OnSelectItem(null);
         }
         
         public void Execute(BoardSlot slot, Item item)
@@ -354,6 +368,8 @@ namespace MergeBoard.Scenes.Board
         
         #endregion
 
+        #region IUserBoardSerializer
+        
         public void SerializeBoard()
         {
             userBoard.UserBoardSlotList.Clear();
@@ -374,5 +390,7 @@ namespace MergeBoard.Scenes.Board
                 userBoard.UserBoardSlotList.Add(userBoardSlot);
             }
         }
+        
+        #endregion
     }
 }

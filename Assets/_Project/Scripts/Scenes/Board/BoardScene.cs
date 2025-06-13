@@ -34,6 +34,8 @@ namespace MergeBoard.Scenes
                     UserQuestMapper = InitData.UserQuestMapper
                 });
                 InitData.UserBoardMapper.SetBoardSerializer(_mergeBoard);
+                SceneUI.InitFeatures();
+                _mergeBoard.OnOpen();
             }
             catch (Exception e)
             {

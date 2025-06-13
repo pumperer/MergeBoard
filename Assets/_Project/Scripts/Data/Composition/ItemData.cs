@@ -105,6 +105,11 @@ namespace MergeBoard.Data.Composition
             return UserData.NextCooltimeEnd - DateTimeOffset.Now;
         }
 
+        public string GetName(bool withLevel)
+        {
+            return GetName(BaseData, withLevel);
+        }
+        
         public static string GetName(ItemBase itemBase, bool withLevel)
         {
             var itemName = LocalizationManager.Instance.GetString($"Item_Name_{itemBase.Id}");
