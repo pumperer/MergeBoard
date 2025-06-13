@@ -1,0 +1,304 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Default Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Default
+  m_TableCollectionNameGuidString: 306a897d775222b47aa6679ef2b0f571
+  m_Entries:
+  - m_Id: 774339710976
+    m_Key: Item_Name_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774348099584
+    m_Key: Item_Desc_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774348099585
+    m_Key: Item_Name_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774348099586
+    m_Key: Item_Desc_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293888
+    m_Key: Item_Name_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293889
+    m_Key: Item_Desc_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293890
+    m_Key: Item_Name_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293891
+    m_Key: Item_Desc_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293892
+    m_Key: Item_Name_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293893
+    m_Key: Item_Desc_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293894
+    m_Key: Item_Name_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293895
+    m_Key: Item_Desc_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293896
+    m_Key: Item_Name_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293897
+    m_Key: Item_Desc_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293898
+    m_Key: Item_Name_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293899
+    m_Key: Item_Desc_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293900
+    m_Key: Item_Name_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293901
+    m_Key: Item_Desc_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293902
+    m_Key: Item_Name_10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293903
+    m_Key: Item_Desc_10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293904
+    m_Key: Item_Name_11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293905
+    m_Key: Item_Desc_11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293906
+    m_Key: Item_Name_12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293907
+    m_Key: Item_Desc_12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293908
+    m_Key: Item_Name_13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293909
+    m_Key: Item_Desc_13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293910
+    m_Key: Board_Name_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293911
+    m_Key: UI_NoMoreMerge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293912
+    m_Key: UI_Item_Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293913
+    m_Key: UI_Item_LevelMax
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293914
+    m_Key: UI_Item_Charging
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293915
+    m_Key: UI_Item_NotSelect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293916
+    m_Key: UI_Label_RandomBox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293917
+    m_Key: UI_Label_RemainItemPopCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293918
+    m_Key: UI_Label_RemainItemCooltime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293919
+    m_Key: UI_Label_Day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293920
+    m_Key: UI_Label_Hour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293921
+    m_Key: UI_Label_Minute
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293922
+    m_Key: UI_Label_Second
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293923
+    m_Key: UI_Label_QuestTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293924
+    m_Key: UI_Label_QuestAdd
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293925
+    m_Key: UI_Label_QuestEmpty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293926
+    m_Key: QuestName_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293927
+    m_Key: QuestName_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293928
+    m_Key: QuestName_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293929
+    m_Key: Board_Name_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293930
+    m_Key: QuestName_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293931
+    m_Key: QuestName_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293932
+    m_Key: QuestName_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293933
+    m_Key: QuestName_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293934
+    m_Key: QuestName_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293935
+    m_Key: QuestName_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293936
+    m_Key: QuestName_10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293937
+    m_Key: QuestName_11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293938
+    m_Key: QuestName_12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293939
+    m_Key: QuestName_13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293940
+    m_Key: QuestName_14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293941
+    m_Key: QuestName_15
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293942
+    m_Key: UI_Label_QuestSubmitTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293943
+    m_Key: UI_Label_Reward_Exp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293944
+    m_Key: UI_Label_Reward_Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293945
+    m_Key: UI_Label_Reward_Energy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293946
+    m_Key: UI_Label_QuestSubmitButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293947
+    m_Key: UI_Label_Sell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293948
+    m_Key: QuestName_16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293949
+    m_Key: QuestName_17
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293950
+    m_Key: QuestName_18
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293951
+    m_Key: QuestName_19
+    m_Metadata:
+      m_Items: []
+  - m_Id: 774352293952
+    m_Key: QuestName_20
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1668285990646579418
+  references:
+    version: 2
+    RefIds:
+    - rid: 1668285990646579418
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1749781201896

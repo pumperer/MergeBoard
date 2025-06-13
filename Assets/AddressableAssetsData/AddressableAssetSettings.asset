@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 257e85c3abaada04f8492e2941e73c0d
   m_currentHash:
     serializedVersion: 2
-    Hash: b251d05c18a0de2abdfbdd11b2f35d04
+    Hash: 3310c345e4731cefe2a07e087b3d72cb
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -61,9 +61,13 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 048d5ea74a9676646a29dc2d64e9e8ea, type: 2}
   - {fileID: 11400000, guid: 1823ba3bad8c6eb43b48854995a82637, type: 2}
+  - {fileID: 11400000, guid: 1ddc82464495e0b44891c20de9401522, type: 2}
   - {fileID: 11400000, guid: 554f87979c57c8e42b5da0ca6af0fb1a, type: 2}
+  - {fileID: 11400000, guid: 38376299d04b0e44e954c86ded032738, type: 2}
   - {fileID: 11400000, guid: 2897e9f6358fa6840a2e7df2e87dbed1, type: 2}
   - {fileID: 11400000, guid: 2ed754ab1e56d43408f2ed8f3763a476, type: 2}
+  - {fileID: 11400000, guid: 867741067ffe6024ba53e34e1be15dc0, type: 2}
+  - {fileID: 11400000, guid: e286719410148a645ba637e6836e9e4c, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
     m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
@@ -103,6 +107,9 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Locale
+    - Locale-en
+    - Locale-ko
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: f9dd6934ed09fdd418d04a3a4b811040, type: 2}
