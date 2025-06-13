@@ -9,13 +9,13 @@ namespace MergeBoard.Data.Table
     [Serializable]
     public record QuestCondition
     {
-        [DataColumn("ConditionType")]
+        [DataCompoundElement("ConditionType")]
         public string ConditionType { get; set; }
 
-        [DataColumn("ConditionId")]
+        [DataCompoundElement("ConditionId")]
         public int ConditionId { get; set; }
 
-        [DataColumn("ConditionValue")]
+        [DataCompoundElement("ConditionValue")]
         public int ConditionValue { get; set; }
     }
     

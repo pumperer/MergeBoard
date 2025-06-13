@@ -278,10 +278,13 @@ public override void ObjectToJson(JToken token, MergeBoard.Data.Table.PopProbabi
 public sealed record __r_QuestConditionBase_1430477122_Wrapped : MergeBoard.Data.Table.QuestConditionBase {
 public static SchemeDefinition[] __schema__ = {
 new() { NameHash = 718830648, TypeHash = 1798982289 }, /* Int32 QuestId */
+new() { NameHash = 1096459174, TypeHash = 3327941314 }, /* (Compound) String Condition.ConditionType */
+new() { NameHash = 4255764946, TypeHash = 1798982289 }, /* (Compound) Int32 Condition.ConditionId */
+new() { NameHash = 182750618, TypeHash = 1798982289 }, /* (Compound) Int32 Condition.ConditionValue */
 new() { NameHash = 1619518505, TypeHash = 4266003888 }, /* QuestCondition Condition */
 new() { NameHash = 4214230326, TypeHash = 1798982289 }, /* Int32 Id */
 new() { NameHash = 3871067742, TypeHash = 3333469098 }, /* CustomBoolean IsActive */
-/* Definition Count: 4 */
+/* Definition Count: 7 */
 };
 public System.Int32 __r_QuestId_Ovr { set { QuestId = value; } }
 public MergeBoard.Data.Table.QuestCondition __r_Condition_Ovr { set { Condition = value; } }
@@ -306,6 +309,9 @@ stream.WriteCustomBoolean(da.IsActive);
 public override MergeBoard.Data.Table.QuestConditionBase JsonToObject(JToken token) {
 var da = new MergeBoard.Data.Table.QuestConditionBase();
 da.Condition = new MergeBoard.Data.Table.QuestCondition {
+ConditionType = token["ConditionType"] != null ? token["ConditionType"].ToObject<System.String>() : default,
+ConditionId = token["ConditionId"] != null ? token["ConditionId"].ToObject<System.Int32>() : default,
+ConditionValue = token["ConditionValue"] != null ? token["ConditionValue"].ToObject<System.Int32>() : default,
 };
 da.Id = token["Id"] != null ? token["Id"].ToObject<System.Int32>() : default;
 da.IsActive = token["IsActive"] != null ? token["IsActive"].ToObject<alpoLib.Core.Foundation.CustomBoolean>() : default;
@@ -340,9 +346,6 @@ stream.WriteS32(da.ConditionValue);
 }
 public override MergeBoard.Data.Table.QuestCondition JsonToObject(JToken token) {
 var da = new MergeBoard.Data.Table.QuestCondition();
-da.ConditionId = token["ConditionId"] != null ? token["ConditionId"].ToObject<System.Int32>() : default;
-da.ConditionType = token["ConditionType"] != null ? token["ConditionType"].ToObject<System.String>() : default;
-da.ConditionValue = token["ConditionValue"] != null ? token["ConditionValue"].ToObject<System.Int32>() : default;
 return da; }
 public override void ObjectToJson(JToken token, MergeBoard.Data.Table.QuestCondition da) {
 }
