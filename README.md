@@ -6,13 +6,8 @@
 - 각 보드에서 하단의 랜덤박스 아이콘을 클릭하면 아이템을 획득할 수 있습니다.
 - 보드 화면에서 G 는 골드 증가, E 는 에너지 증가 치트기 입니다.
 
-#### 리소스는 가능한 더미입니다.
-- 보드의 배경, 아이템, 퀘스트 등은 더미 리소스입니다.
-
-## 환경
-- Unity 6000.1.2f1 + Rider
-- portrait 기준으로 구현
-- 시작 씬 : Assets/_Project/Scenes/Startup.unity
+## 소스 코드 위치
+- 게임 관련 : [Assets/_Projects/Scripts](https://github.com/pumperer/MergeBoard/tree/main/Assets/_Project/Scripts)
 - alpoLib 을 사용하여 Scene, UI, Data 등을 관리 하고 있습니다.
   - alpoLib 패키지는 git url 로 패키지 매니저에서 설치되어 있습니다.
   - [AlpoLib-Core](https://github.com/pumperer/AlpoLib-Core)
@@ -21,5 +16,7 @@
   - [AlpoLib-UI](https://github.com/pumperer/AlpoLib-UI)
   - [AlpoLib-Res](https://github.com/pumperer/AlpoLib-Res)
 
-## 소스 코드 위치
-- [Assets/_Projects/Scripts](https://github.com/pumperer/MergeBoard/tree/main/Assets/_Project/Scripts)
+## 환경
+- Unity 6000.1.2f1 + Rider
+- portrait 기준으로 구현
+- 시작 씬 : Assets/_Project/Scenes/Startup.unity
