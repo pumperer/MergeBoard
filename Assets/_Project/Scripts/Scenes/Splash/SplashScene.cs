@@ -11,7 +11,7 @@ namespace MergeBoard.Scenes
 
         public override void OnOpen()
         {
-            _ = SequenceAsync();
+            AwaitableHelper.Run(SequenceAsync);
         }
 
         private async Awaitable SequenceAsync()
@@ -21,7 +21,7 @@ namespace MergeBoard.Scenes
             logoObject.SetActive(true);
             await Awaitable.WaitForSecondsAsync(2f);
 
-            _ = SceneManager.Instance.OpenSceneAsync<TitleScene>();
+            AwaitableHelper.Run(() => SceneManager.Instance.OpenSceneAsync<TitleScene>());
         }
     }
 }

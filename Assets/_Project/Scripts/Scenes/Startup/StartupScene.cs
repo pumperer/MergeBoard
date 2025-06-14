@@ -22,12 +22,12 @@ namespace MergeBoard.Scenes
             TaskScheduler.Init(true);
             Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 0;
-            _ = SceneManager.Initialize(this);
+            AwaitableHelper.Run(() => SceneManager.Initialize(this));
         }
 
         public override void OnOpen()
         {
-            SceneManager.Instance.OpenSceneAsync<SplashScene>();
+            AwaitableHelper.Run(() => SceneManager.Instance.OpenSceneAsync<SplashScene>());
         }
     }
 }

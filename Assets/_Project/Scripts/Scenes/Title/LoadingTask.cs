@@ -37,7 +37,7 @@ namespace MergeBoard.Scenes
         public override void OnEnter(LoadingTaskMachine machine)
         {
             machine.Listener.OnLoadingProgressChanged(this);
-            _ = ProcessLoadingAsync(machine);
+            AwaitableHelper.Run(() => ProcessLoadingAsync(machine));
         }
 
         private async Awaitable ProcessLoadingAsync(LoadingTaskMachine machine)
