@@ -15,6 +15,7 @@ namespace MergeBoard.Data.Composition
         
         public int QuestId => BaseData.Id;
         public List<QuestConditionBase> Conditions => _conditions;
+        public List<QuestRewardBase> Rewards => _rewards;
         
         private List<ItemBase> _conditionItemBaseList;
 

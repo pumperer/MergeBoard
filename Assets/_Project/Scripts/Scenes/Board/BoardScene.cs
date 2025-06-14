@@ -6,6 +6,7 @@ using MergeBoard.Data.Table;
 using MergeBoard.Data.User;
 using MergeBoard.Sound;
 using MergeBoard.UI.Scenes;
+using UnityEngine;
 
 namespace MergeBoard.Scenes
 {
@@ -53,6 +54,21 @@ namespace MergeBoard.Scenes
             _mergeBoard.OnClose();
             InitData.UserBoardMapper.SetBoardSerializer(null);
             SoundManager.Instance.StopBGM();
+        }
+
+        protected override void OnUpdate()
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                InitData.UserInfoMapper.AddGold(100);
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                InitData.UserInfoMapper.AddEnergy(10);
+                return;
+            }
         }
     }
 

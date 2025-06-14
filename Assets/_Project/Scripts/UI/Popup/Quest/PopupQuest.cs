@@ -54,7 +54,7 @@ namespace MergeBoard.UI.Popup
         private GameObject TableViewOnGetCellItem(int arg)
         {
             var slot = _slotPool.Get();
-            slot.SetData(_questDataList[arg], OnClickQuestSubmit);
+            slot.SetData(_questDataList[arg], InitData.UserItemMapper, OnClickQuestSubmit);
             slot.transform.SetParent(tableView.content);
             return slot.gameObject;
         }
@@ -72,6 +72,7 @@ namespace MergeBoard.UI.Popup
         private void RefreshQuestList()
         {
             _questDataList = InitData.UserQuestMapper.GetAllQuestDatas(InitData.CurrentBoardId).ToList();
+            _questDataList.Sort((a, b) => b.CheckIsDone().CompareTo(a.CheckIsDone()));
             tableView.RefreshAll(true);
             emptyObject.SetActive(_questDataList.Count == 0);
         }
@@ -84,14 +85,22 @@ namespace MergeBoard.UI.Popup
             emptyObject.SetActive(false);
         }
 
-        public void OnClickQuestSubmit()
+        public void OnClickQuestSubmit(QuestData data)
         {
             // submit popup
+            var p = PopupBase.CreatePopup<PopupQuestSubmit>();
+            p.Initialize(new PopupQuestSubmitParam
+            {
+                QuestData = data,
+                QuestSubmitCallback = OnQuestSubmit,
+            });
+            p.Open();
         }
 
-        private void OnQuestSubmit()
+        private void OnQuestSubmit(QuestData data)
         {
-            
+            _questDataList.Remove(data);
+            tableView.RefreshAll();
         }
     }
 
@@ -106,6 +115,7 @@ namespace MergeBoard.UI.Popup
         public Action QuestSubmitCallback;
         public int CurrentBoardId;
         public IUserQuestMapper UserQuestMapper;
+        public IUserItemMapper UserItemMapper;
     }
 
     public class PopupQuestLoadingBlock : PopupLoadingBlock<PopupQuestParam, PopupQuestInitData>
@@ -117,6 +127,7 @@ namespace MergeBoard.UI.Popup
                 QuestSubmitCallback = param.QuestSubmitCallback,
                 CurrentBoardId = param.CurrentBoardId,
                 UserQuestMapper = UserDataManager.GetLoader<IUserQuestMapper>(),
+                UserItemMapper = UserDataManager.GetLoader<IUserItemMapper>()
             };
         }
     }

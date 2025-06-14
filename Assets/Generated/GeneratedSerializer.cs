@@ -391,10 +391,13 @@ public override void ObjectToJson(JToken token, MergeBoard.Data.Table.QuestDefin
 public sealed record __r_QuestRewardBase_1524181191_Wrapped : MergeBoard.Data.Table.QuestRewardBase {
 public static SchemeDefinition[] __schema__ = {
 new() { NameHash = 718830648, TypeHash = 1798982289 }, /* Int32 QuestId */
+new() { NameHash = 4002822995, TypeHash = 692989292 }, /* (Compound) RewardType Reward.Type */
+new() { NameHash = 4214230326, TypeHash = 1798982289 }, /* (Compound) Int32 Reward.Id */
+new() { NameHash = 3367774595, TypeHash = 1798982289 }, /* (Compound) Int32 Reward.Value */
 new() { NameHash = 1946898862, TypeHash = 2627367613 }, /* Reward Reward */
 new() { NameHash = 4214230326, TypeHash = 1798982289 }, /* Int32 Id */
 new() { NameHash = 3871067742, TypeHash = 3333469098 }, /* CustomBoolean IsActive */
-/* Definition Count: 4 */
+/* Definition Count: 7 */
 };
 public System.Int32 __r_QuestId_Ovr { set { QuestId = value; } }
 public MergeBoard.Data.Reward __r_Reward_Ovr { set { Reward = value; } }
@@ -422,6 +425,9 @@ da.Id = token["Id"] != null ? token["Id"].ToObject<System.Int32>() : default;
 da.IsActive = token["IsActive"] != null ? token["IsActive"].ToObject<alpoLib.Core.Foundation.CustomBoolean>() : default;
 da.QuestId = token["QuestId"] != null ? token["QuestId"].ToObject<System.Int32>() : default;
 da.Reward = new MergeBoard.Data.Reward {
+Type = token["RewardType"] != null ? token["RewardType"].ToObject<MergeBoard.Data.RewardType>() : default,
+Id = token["RewardId"] != null ? token["RewardId"].ToObject<System.Int32>() : default,
+Value = token["RewardValue"] != null ? token["RewardValue"].ToObject<System.Int32>() : default,
 };
 return da; }
 public override void ObjectToJson(JToken token, MergeBoard.Data.Table.QuestRewardBase da) {
@@ -453,10 +459,6 @@ stream.WriteS32(da.Value);
 }
 public override MergeBoard.Data.Reward JsonToObject(JToken token) {
 var da = new MergeBoard.Data.Reward();
-da.Id = token["RewardId"] != null ? token["RewardId"].ToObject<System.Int32>() : default;
-var __Type_converter__ = TypeDescriptor.GetConverter(typeof(MergeBoard.Data.RewardType));
-da.Type = (MergeBoard.Data.RewardType)__Type_converter__.ConvertFrom((String)token["RewardType"]);
-da.Value = token["RewardValue"] != null ? token["RewardValue"].ToObject<System.Int32>() : default;
 return da; }
 public override void ObjectToJson(JToken token, MergeBoard.Data.Reward da) {
 }

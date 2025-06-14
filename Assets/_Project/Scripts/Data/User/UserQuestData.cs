@@ -55,7 +55,7 @@ namespace MergeBoard.Data.User
         {
             var list = from userQuest in _questDic.Values
                 let defineBase = _questMapper.GetQuestDefineBase(currentBoard, userQuest.QuestId)
-                where defineBase.BoardId == currentBoard
+                where defineBase != null && defineBase.BoardId == currentBoard
                 select new QuestData(defineBase, userQuest);
             return list;
         }

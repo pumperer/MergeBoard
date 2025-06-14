@@ -1,6 +1,5 @@
-using alpoLib.Data;
 using alpoLib.Res;
-using alpoLib.Util;
+using alpoLib.UI;
 using MergeBoard.Data.Composition;
 using MergeBoard.Data.Table;
 using MergeBoard.Data.User;
@@ -9,16 +8,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MergeBoard.UI.Popup
+namespace MergeBoard.UI
 {
-    public class ItemSlotData : DataManagerHolder
+    public class ItemSlotData : SlotDataBase
     {
+        public IUserItemMapper UserItemMapper;
         public ItemBase ItemBase;
         public int RequireCount;
 
         private int GetCurrentValue()
         {
-            return UserDataManager.GetLoader<IUserItemMapper>().GetItemCount(ItemBase.Id);
+            return UserItemMapper.GetItemCount(ItemBase.Id);
         }
         
         public bool IsComplete => GetCurrentValue() >= RequireCount;
@@ -26,9 +26,10 @@ namespace MergeBoard.UI.Popup
         public string LevelString => ItemData.GetLevelString(ItemBase);
         public string NameString => ItemData.GetName(ItemBase, false);
     }
-    
+
     [MultiPrefabPath("QuestSlot", "Addr/UI/Prefabs/Popup/Quest/ItemSlot.prefab")]
-    public class ItemSlot : CachedUIBehaviour
+    [MultiPrefabPath("QuestSubmit", "Addr/UI/Prefabs/Popup/QuestSubmit/ItemSlot.prefab")]
+    public class ItemSlot : UISlotBase<ItemSlotData, ItemSlot>
     {
         [SerializeField]
         private Image bgImage = null;
@@ -56,7 +57,7 @@ namespace MergeBoard.UI.Popup
 
         private int _requestKey = 0;
         
-        public void UpdateUI(ItemSlotData data)
+        private void UpdateUI(ItemSlotData data)
         {
             if (bgImage)
                 bgImage.color = data.IsComplete ? completeColor : defaultColor;
@@ -88,6 +89,11 @@ namespace MergeBoard.UI.Popup
 
             if (checkImage)
                 checkImage.gameObject.SetActive(data.IsComplete);
+        }
+
+        protected override void OnSetData(ItemSlotData data)
+        {
+            UpdateUI(data);
         }
     }
 }
