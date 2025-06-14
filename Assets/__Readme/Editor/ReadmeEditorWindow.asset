@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6fc698b0a896b4ca62f6b22a15a54a, type: 3}
+  m_Name: ReadmeEditorWindow
+  m_EditorClassIdentifier: 
+  Title: Merge Board
+  Description: "2-merge \uC2A4\uD0C0\uC77C \uAC8C\uC784\uC744 \uD574\uBCF4\uACE0
+    \uAC04\uB2E8\uD558\uAC8C \uB9CC\uB4E4\uC5B4 \uBCF8 \uC0D8\uD50C \uAC8C\uC784\uC785\uB2C8\uB2E4.\n\n\uC544\uB798
+    \uD328\uD0A4\uC9C0\uAC00 git url \uD615\uD0DC\uB85C \uD3EC\uD568\uB418\uC5B4
+    \uC788\uC2B5\uB2C8\uB2E4.\n\nhttps://github.com/pumperer/AlpoLib-UI\r\nhttps://github.com/pumperer/AlpoLib-Data\r\nhttps://github.com/pumperer/AlpoLib-Util\r\nhttps://github.com/pumperer/AlpoLib-Res\r\nhttps://github.com/pumperer/AlpoLib-Core\n\n\uC81C\uBAA9\uC5D0
+    \uC6D4\uB4DC\uAC00 \uC788\uC9C0\uB9CC \uAFB8\uBBF8\uAE30 \uC694\uC18C\uB294 \uC5C6\uC2B5\uB2C8\uB2E4.\n\n-
+    \uC2DC\uC791 \uC52C\n     Assets/_Project/Scenes/StartupScene.unity"
