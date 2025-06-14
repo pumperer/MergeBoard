@@ -15,7 +15,7 @@
         "com.alpolib.core": "1.0.0",
         "com.alpolib.util": "1.0.0"
       },
-      "hash": "dc36d85cf019891c8ec12f4c2ca4107d0a8db6b7"
+      "hash": "8a16ee46dfa0e848cb707f0f905a8ac955f88bac"
     },
     "com.alpolib.res": {
       "version": "https://github.com/pumperer/AlpoLib-Res.git",
@@ -36,7 +36,7 @@
         "com.alpolib.core": "1.0.0",
         "com.unity.inputsystem": "1.14.0"
       },
-      "hash": "4ea7538cad473fb339f75471790f79d77656a18b"
+      "hash": "cd7690cb7435bb9c19d93b47f515f64b8929cc30"
     },
     "com.alpolib.util": {
       "version": "https://github.com/pumperer/AlpoLib-Util.git",
