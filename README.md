@@ -8,7 +8,7 @@
 
 ## 소스 코드 위치
 - 게임 관련 : [Assets/_Projects/Scripts](https://github.com/pumperer/MergeBoard/tree/main/Assets/_Project/Scripts)
-- alpoLib 을 사용하여 Scene, UI, Data 등을 관리 하고 있습니다.
+- 별도의 repo 에 있는 alpoLib 을 사용하여 Scene, UI, Data 등을 관리 하고 있습니다.
   - alpoLib 패키지는 git url 로 패키지 매니저에서 설치되어 있습니다.
   - [AlpoLib-Core](https://github.com/pumperer/AlpoLib-Core)
   - [AlpoLib-Util](https://github.com/pumperer/AlpoLib-Util)
