@@ -42,14 +42,14 @@ namespace MergeBoard.Data.User
         public delegate void OnDeleteUserItemEvent(ItemData data);
         public static event OnDeleteUserItemEvent OnDeleteUserItem;
 
-        private IItemTableLoader _itemTableMapper = null;
+        private IItemTableMapper _itemTableMapper = null;
 
         [SerializeField]
         private Dictionary<int, UserItem> _itemDic = new();
 
         public override void OnCreateInstance()
         {
-            _itemTableMapper = TableDataManager.GetLoader<IItemTableLoader>();
+            _itemTableMapper = TableDataManager.GetLoader<IItemTableMapper>();
         }
 
         public ItemData GetItemData(int id)

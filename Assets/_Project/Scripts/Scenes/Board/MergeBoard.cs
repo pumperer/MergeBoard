@@ -19,7 +19,7 @@ namespace MergeBoard.Scenes.Board
         public class Context
         {
             public BoardDefineBase BoardDefine;
-            public IItemTableLoader ItemTableMapper;
+            public IItemTableMapper ItemTableMapper;
             public IPopProbabilityTableMapper PopProbabilityTableMapper;
             public IUserInfoMapper UserInfoMapper;
             public IUserBoardMapper UserBoardMapper;
@@ -67,13 +67,6 @@ namespace MergeBoard.Scenes.Board
             InitFeatures();
         }
 
-        private void InitFeatures()
-        {
-            AddFeature(new SelectItemFeature(this));
-            AddFeature(new RandomBoxPopFeature(this, _context.UserInfoMapper, _context.UserItemMapper, _context.PopProbabilityTableMapper));
-            AddFeature(new PopItemFeature(this, _context.UserInfoMapper));
-        }
-
         public void OnOpen()
         {
             foreach (var feature in _features)
@@ -116,20 +109,14 @@ namespace MergeBoard.Scenes.Board
                         Item item = null;
                         if (itemBySlot.TryGetValue(new Vector2Int(i, j), out var itemData))
                         {
-                            item = CreateItemComponent(itemData);
+                            item = GenericPrefab.InstantiatePrefab<Item>();
+                            item.Init(itemData);
                         }
                         bs.Init(this, i, j, item);
                         slots.Add(bs);
                     }
                 }
             }
-        }
-
-        private Item CreateItemComponent(ItemData itemData)
-        {
-            var item = GenericPrefab.InstantiatePrefab<Item>();
-            item.Init(itemData);
-            return item;
         }
         
         private void DestroyItemComp(Item item)
@@ -237,55 +224,6 @@ namespace MergeBoard.Scenes.Board
             var orthoByWidth = (WidthCount + padding) * 1 * 0.5f * res.height / res.width;
             var orthoByHeight = (HeightCount+ padding) * 1 * 0.5f;
             camera.orthographicSize = Mathf.Max(orthoByWidth, orthoByHeight);
-        }
-        
-        #endregion
-        
-        #region Merge
-        
-        public Item Merge(Item item1, Item item2)
-        {
-            if (item1 == null || item2 == null)
-                return null;
-
-            if (CanMerge(item1.ItemData, item2.ItemData))
-            {
-                var nextSeq = item1.ItemData.MergeToSeq;
-                var list = _context.ItemTableMapper.GetItemBaseList(item1.ItemData.Category);
-                var next = list.Find(x => x.Sequence == nextSeq);
-                if (next != null)
-                {
-                    var itemData = _context.UserItemMapper.AddItem(next.Id);
-                    if (itemData != null)
-                    {
-                        var itemComp = CreateItemComponent(itemData);
-                        
-                        SoundManager.Instance.PlaySFX(SFXKey.sfx_board_item_merge);
-                        _context.UserItemMapper.RemoveItem(item1.ItemData.UserDataId);
-                        _context.UserItemMapper.RemoveItem(item2.ItemData.UserDataId);
-                        return itemComp;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private bool CanMerge(ItemData data1, ItemData data2)
-        {
-            if (data1 == null || data2 == null)
-                return false;
-
-            if (data1.Category != data2.Category)
-                return false;
-
-            if (data1.Sequence != data2.Sequence)
-                return false;
-
-            if (data1.MergeToSeq == 0 || data2.MergeToSeq == 0)
-                return false;
-
-            return true;
         }
         
         #endregion

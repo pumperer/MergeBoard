@@ -41,14 +41,14 @@ namespace MergeBoard.Data.Table
         public string SpriteName { get; set; }
     }
     
-    public interface IItemTableLoader : ITableDataMapperBase
+    public interface IItemTableMapper : ITableDataMapperBase
     {
         List<ItemBase> GetItemBaseList(string category);
         ItemBase GetItemBase(int id);
     }
     
     [TableDataSheetName("ItemTable_Item")]
-    public class ItemTableLoader : ThreadedTableDataLoader<ItemBase>, IItemTableLoader
+    public class ItemTableLoader : ThreadedTableDataLoader<ItemBase>, IItemTableMapper
     {
         private Dictionary<int, ItemBase> _itemBaseById;
         private Dictionary<string, List<ItemBase>> _itemBaseListByCategory;

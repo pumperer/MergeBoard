@@ -12,6 +12,14 @@ namespace MergeBoard.Scenes.Board
         
         #region Feature Management
         
+        private void InitFeatures()
+        {
+            AddFeature(new SelectItemFeature(this));
+            AddFeature(new MergeItemFeature(this, _context.ItemTableMapper, _context.UserItemMapper));
+            AddFeature(new RandomBoxPopFeature(this, _context.UserInfoMapper, _context.UserItemMapper, _context.PopProbabilityTableMapper));
+            AddFeature(new PopItemFeature(this, _context.UserInfoMapper));
+        }
+        
         private void AddFeature(InGameFeatureBase feature)
         {
             _features.Add(feature);
@@ -53,6 +61,12 @@ namespace MergeBoard.Scenes.Board
         {
             foreach (var feature in _features)
                 feature.OnRandomBoxPop(newItem);
+        }
+
+        public void OnMerge(Item item1, Item item2, Item newItem)
+        {
+            foreach (var feature in _features)
+                feature.OnMerge(item1, item2, newItem);
         }
         
         #endregion

@@ -1,4 +1,5 @@
 using alpoLib.Res;
+using MergeBoard.Scenes.Board.Feature;
 using UnityEngine;
 
 namespace MergeBoard.Scenes.Board
@@ -130,55 +131,47 @@ namespace MergeBoard.Scenes.Board
         
         public bool OnMovableReceive(IMovable movable)
         {
-            if (movable == null)
+            if (movable is not Item item)
                 return false;
-
-            if (movable is Item item)
+            
+            if (IsEmpty())
             {
-                if (IsEmpty())
-                {
-                    item.SetSlot(this);
-                    SetItem(item);
-                    RepositionItem(true);
-                    Board.Select(this);
-                    return true;
-                }
-                else
-                {
-                    // merge!
-                    var mergedItem = Board.Merge(currentItem, item);
-                    if (mergedItem != null)
-                    {
-                        mergedItem.SetSlot(this);
-                        SetItem(mergedItem);
-                        RepositionItem(false);
-                        Board.Select(this);
-                        return true;
-                    }
-                    else
-                    {
-                        var emptySlot = Board.FindNearestEmptySlot(this);
-                        if (emptySlot == null)
-                            return false;
-
-                        var tempItem = currentItem;
-
-                        currentItem.SetSlot(emptySlot);
-                        emptySlot.SetItem(tempItem);
-
-                        item.SetSlot(this);
-                        SetItem(item);
-
-                        tempItem.OnCancelMove();
-                        item.OnCancelMove();
-
-                        Board.Select(this);
-                        return true;
-                    }
-                }
+                item.SetSlot(this);
+                SetItem(item);
+                RepositionItem(true);
+                Board.Select(this);
+                return true;
             }
 
-            return false;
+            // merge!
+            var mergedItem = Board.GetFeature<MergeItemFeature>().Merge(currentItem, item);
+            if (mergedItem)
+            {
+                mergedItem.SetSlot(this);
+                SetItem(mergedItem);
+                RepositionItem(false);
+                Board.OnMerge(currentItem, item, mergedItem);
+            }
+            else
+            {
+                var emptySlot = Board.FindNearestEmptySlot(this);
+                if (emptySlot == null)
+                    return false;
+
+                var tempItem = currentItem;
+
+                currentItem.SetSlot(emptySlot);
+                emptySlot.SetItem(tempItem);
+
+                item.SetSlot(this);
+                SetItem(item);
+
+                tempItem.OnCancelMove();
+                item.OnCancelMove();
+            }
+
+            Board.Select(this);
+            return true;
         }
         
         #endregion

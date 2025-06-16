@@ -23,6 +23,11 @@ namespace MergeBoard.Scenes.Board.Feature
             UI?.OnSelectItem(item);
         }
 
+        public override void OnPop(Item fromItem, Item newItem)
+        {
+            UI?.UpdateSelectItem(fromItem);
+        }
+
         private void OnSellItem(Item item)
         {
             SoundManager.Instance.PlaySFX(SFXKey.sfx_sell);

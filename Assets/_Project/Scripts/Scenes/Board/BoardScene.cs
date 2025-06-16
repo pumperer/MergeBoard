@@ -80,7 +80,7 @@ namespace MergeBoard.Scenes
     public class BoardSceneInitData : SceneInitData
     {
         public BoardDefineBase BoardDefine;
-        public IItemTableLoader ItemTableMapper;
+        public IItemTableMapper ItemTableMapper;
         public IPopProbabilityTableMapper PopProbabilityTableMapper;
         public IUserInfoMapper UserInfoMapper;
         public IUserBoardMapper UserBoardMapper;
@@ -95,7 +95,7 @@ namespace MergeBoard.Scenes
             return new BoardSceneInitData
             {
                 BoardDefine = TableDataManager.GetLoader<IBoardDefineTableMapper>().GetBoardDefineBase(param.BoardId),
-                ItemTableMapper = TableDataManager.GetLoader<IItemTableLoader>(),
+                ItemTableMapper = TableDataManager.GetLoader<IItemTableMapper>(),
                 PopProbabilityTableMapper = TableDataManager.GetLoader<IPopProbabilityTableMapper>(),
                 UserInfoMapper = UserDataManager.GetLoader<IUserInfoMapper>(),
                 UserBoardMapper = UserDataManager.GetLoader<IUserBoardMapper>(),

@@ -51,6 +51,13 @@ namespace MergeBoard.UI.Hud
             }
         }
 
+        public void UpdateSelectItem(Item item)
+        {
+            if (_selectedItem != item)
+                return;
+            OnSelectItem(item);
+        }
+
         public void SetSellItemEvent(Action<Item> onSellItem)
         {
             _onSellItem = onSellItem;

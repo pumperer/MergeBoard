@@ -24,7 +24,7 @@ namespace MergeBoard.Data.Composition
             get
             {
                 _conditionItemBaseList ??= _conditions.Select(b =>
-                    TableDataManager.GetLoader<IItemTableLoader>().GetItemBase(b.Condition.ConditionId)).ToList();
+                    TableDataManager.GetLoader<IItemTableMapper>().GetItemBase(b.Condition.ConditionId)).ToList();
                 return _conditionItemBaseList;
             }
             
