@@ -71,6 +71,7 @@ namespace MergeBoard.Scenes.Board
         {
             AddFeature(new SelectItemFeature(this));
             AddFeature(new RandomBoxPopFeature(this, _context.UserInfoMapper));
+            AddFeature(new PopItemFeature(this, _context.UserInfoMapper, _context.UserItemMapper, _context.PopProbabilityTableMapper));
         }
 
         public void OnOpen()
@@ -292,63 +293,19 @@ namespace MergeBoard.Scenes.Board
 
         public bool PopItemFromRandomBox(Vector3 pos)
         {
-            if (!HasEmptySlot())
-                return false;
-
-            var poppedItemId = _context.PopProbabilityTableMapper.GetPopItemIdByRandom(PopType.FromRandomBox, CurrentBoardId);
-            if (poppedItemId == 0)
-                return false;
-            
-            var emptySlot = FindNearestEmptySlot(null);
-            var newItemData = _context.UserItemMapper.AddItem(poppedItemId);
-            Pop(newItemData, emptySlot, pos);
-            
-            return true;
+            return GetFeature<PopItemFeature>()?.PopItemFromRandomBox(pos) ?? false;
         }
-        
+
         public Item Pop(Item item)
         {
-            if (item == null)
-                return null;
-			
-            if (item.ItemData == null)
-                return null;
-
-            if (!HasEmptySlot())
-                return null;
-
-            if (_context.UserInfoMapper.GetEnergyCount() == 0)
-                return null;
-
-            if (!item.ItemData.CanPop())
-                return null;
-
-            _context.UserInfoMapper.AddEnergy(-item.ItemData.Energy);
-
-            var poppedItemData = item.ItemData.Pop();
-            var targetSlot = FindNearestEmptySlot(item.CurrentSlot);
-            return Pop(poppedItemData, targetSlot, item.CurrentSlot.transform.position);
+            return GetFeature<PopItemFeature>()?.Pop(item);
         }
-        
+
         public Item Pop(ItemData newItemData, BoardSlot targetSlot, Vector3 fromPos)
         {
-            if (newItemData != null)
-            {
-                var newItem = CreateItemComponent(newItemData);
-				
-                if (targetSlot != null && newItem != null)
-                {
-                    newItem.SetSlot(targetSlot);
-                    newItem.transform.position = fromPos;
-                    targetSlot.SetItem(newItem);
-                    targetSlot.RepositionItem(true);
-                }
-                SoundManager.Instance.PlaySFX(SFXKey.sfx_board_item_pop);
-                return newItem;
-            }
-            return null;
+            return GetFeature<PopItemFeature>()?.Pop(newItemData, targetSlot, fromPos);
         }
-        
+
         #endregion
         
         #region Quest
