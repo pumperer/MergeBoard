@@ -9,7 +9,7 @@ namespace MergeBoard.Scenes.Board.Feature.UI
         void SetSellItemEvent(Action<Item> onSellItem);
     }
     
-    public class SelectItemFeatureUI : MergeFeatureUIBase<SelectItemFeature>
+    public class SelectItemFeatureUI : InGameFeatureUIBase<SelectItemFeature>
     {
         private readonly ISelectItemInfo _itemInfo;
         

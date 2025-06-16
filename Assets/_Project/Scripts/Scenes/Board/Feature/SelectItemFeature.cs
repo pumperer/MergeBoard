@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MergeBoard.Scenes.Board.Feature
 {
-    public class SelectItemFeature : MergeFeatureBase
+    public class SelectItemFeature : InGameFeatureBase
     {
         private SelectItemFeatureUI UI => FeatureUI as SelectItemFeatureUI;
         

@@ -9,7 +9,7 @@ namespace MergeBoard.Scenes.Board.Feature.UI
         void SetRandomBoxPopEvent(Action<Vector3> onRandomBoxPop);
     }
     
-    public class RandomBoxPopFeatureUI : MergeFeatureUIBase<RandomBoxPopFeature>
+    public class RandomBoxPopFeatureUI : InGameFeatureUIBase<RandomBoxPopFeature>
     {
         private IRandomBoxPop _randomBoxPop;
         

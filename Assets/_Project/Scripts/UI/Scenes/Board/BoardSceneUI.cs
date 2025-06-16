@@ -9,7 +9,7 @@ namespace MergeBoard.UI.Scenes
 {
     public class BoardSceneUI : SceneUIBase
     {
-        private readonly HashSet<IMergeFeatureUI> _uiFeatures = new();
+        private readonly HashSet<IInGameFeatureUI> _uiFeatures = new();
         private HudItemController _hudItemController;
 
         public override void OnInitialize()
@@ -18,7 +18,7 @@ namespace MergeBoard.UI.Scenes
             _hudItemController = new HudItemController(GetComponentsInChildren<HudItemBase>(true));
         }
         
-        private void AddFeatureUI(IMergeFeatureUI featureUI)
+        private void AddFeatureUI(IInGameFeatureUI featureUI)
         {
             _uiFeatures.Add(featureUI);
         }
@@ -32,7 +32,7 @@ namespace MergeBoard.UI.Scenes
                 InitOneFeature(featureUI);
         }
 
-        private void InitOneFeature(IMergeFeatureUI featureUI)
+        private void InitOneFeature(IInGameFeatureUI featureUI)
         {
             var feature = MB.Instance.GetFeature(featureUI.GetPairFeatureType());
             if (feature == null)

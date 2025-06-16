@@ -1,37 +1,37 @@
 using MergeBoard.Data.Composition;
 using MergeBoard.Scenes.Board.Feature.UI;
-using UnityEngine;
 
 namespace MergeBoard.Scenes.Board.Feature
 {
-    public interface IMergeFeature
+    public interface IInGameFeature
     {
-        void AttachFeatureUI(IMergeFeatureUI featureUI);
+        void AttachFeatureUI(IInGameFeatureUI featureUI);
 
         void OnOpen();
         void OnClose();
         
         void OnUpdate(float deltaTime, float timeScale);
         void OnSelect(Item item);
-        void OnMerge(Item item1, Item item2);
-        void OnPop(Item fromItem);
+        void OnMerge(Item item1, Item item2, Item newItem);
+        void OnPop(Item fromItem, Item newItem);
+        void OnPopFromRandomBox(Item newItem);
         void OnMove(Item moveItem, BoardSlot fromSlot, BoardSlot toSlot);
         void OnSell(Item item);
         void OnQuestComplete(QuestData questData);
         void OnRandomBoxPop(Item item);
     }
     
-    public abstract class MergeFeatureBase : IMergeFeature
+    public abstract class InGameFeatureBase : IInGameFeature
     {
         protected MergeBoard Board { get; private set; }
-        protected IMergeFeatureUI FeatureUI { get; private set; }
+        protected IInGameFeatureUI FeatureUI { get; private set; }
 
-        protected MergeFeatureBase(MergeBoard board)
+        protected InGameFeatureBase(MergeBoard board)
         {
             Board = board;
         }
         
-        public void AttachFeatureUI(IMergeFeatureUI featureUI)
+        public void AttachFeatureUI(IInGameFeatureUI featureUI)
         {
             FeatureUI = featureUI;
         }
@@ -52,11 +52,15 @@ namespace MergeBoard.Scenes.Board.Feature
         {
         }
 
-        public virtual void OnMerge(Item item1, Item item2)
+        public virtual void OnMerge(Item item1, Item item2, Item newItem)
         {
         }
 
-        public virtual void OnPop(Item fromItem)
+        public virtual void OnPop(Item fromItem, Item newItem)
+        {
+        }
+
+        public void OnPopFromRandomBox(Item newItem)
         {
         }
 

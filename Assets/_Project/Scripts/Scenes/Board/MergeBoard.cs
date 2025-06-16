@@ -70,8 +70,8 @@ namespace MergeBoard.Scenes.Board
         private void InitFeatures()
         {
             AddFeature(new SelectItemFeature(this));
-            AddFeature(new RandomBoxPopFeature(this, _context.UserInfoMapper));
-            AddFeature(new PopItemFeature(this, _context.UserInfoMapper, _context.UserItemMapper, _context.PopProbabilityTableMapper));
+            AddFeature(new RandomBoxPopFeature(this, _context.UserInfoMapper, _context.UserItemMapper, _context.PopProbabilityTableMapper));
+            AddFeature(new PopItemFeature(this, _context.UserInfoMapper));
         }
 
         public void OnOpen()
@@ -259,6 +259,7 @@ namespace MergeBoard.Scenes.Board
                     if (itemData != null)
                     {
                         var itemComp = CreateItemComponent(itemData);
+                        
                         SoundManager.Instance.PlaySFX(SFXKey.sfx_board_item_merge);
                         _context.UserItemMapper.RemoveItem(item1.ItemData.UserDataId);
                         _context.UserItemMapper.RemoveItem(item2.ItemData.UserDataId);
@@ -291,19 +292,11 @@ namespace MergeBoard.Scenes.Board
         
         #region Pop
 
-        public bool PopItemFromRandomBox(Vector3 pos)
-        {
-            return GetFeature<PopItemFeature>()?.PopItemFromRandomBox(pos) ?? false;
-        }
-
         public Item Pop(Item item)
         {
-            return GetFeature<PopItemFeature>()?.Pop(item);
-        }
-
-        public Item Pop(ItemData newItemData, BoardSlot targetSlot, Vector3 fromPos)
-        {
-            return GetFeature<PopItemFeature>()?.Pop(newItemData, targetSlot, fromPos);
+            var newItem = GetFeature<PopItemFeature>()?.Pop(item);
+            OnPop(item, newItem);
+            return newItem;
         }
 
         #endregion

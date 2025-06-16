@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace MergeBoard.Scenes.Board.Feature.UI
 {
-    public interface IMergeFeatureUI
+    public interface IInGameFeatureUI
     {
         Type GetPairFeatureType();
-        void OnAttachFeature(IMergeFeature feature);
+        void OnAttachFeature(IInGameFeature feature);
         void OnOpen();
         void OnClose();
     }
     
-    public abstract class MergeFeatureUIBase<T> : IMergeFeatureUI where T : IMergeFeature
+    public abstract class InGameFeatureUIBase<T> : IInGameFeatureUI where T : IInGameFeature
     {
-        protected MergeFeatureUIBase(BoardSceneUI sceneUI)
+        protected InGameFeatureUIBase(BoardSceneUI sceneUI)
         {
         }
         
@@ -23,7 +23,7 @@ namespace MergeBoard.Scenes.Board.Feature.UI
             return typeof(T);
         }
 
-        public virtual void OnAttachFeature(IMergeFeature feature)
+        public virtual void OnAttachFeature(IInGameFeature feature)
         {
         }
 
