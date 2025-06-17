@@ -47,5 +47,8 @@ TagManager:
   - name: Slots
     uniqueID: 269606567
     locked: 0
+  - name: Vfx
+    uniqueID: 87907337
+    locked: 0
   m_RenderingLayers:
   - Default
