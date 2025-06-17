@@ -5,8 +5,10 @@ using alpoLib.Res;
 using alpoLib.UI;
 using MergeBoard.Data.Composition;
 using MergeBoard.Data.User;
+using MergeBoard.UI.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MergeBoard.UI.Popup
 {
@@ -17,6 +19,7 @@ namespace MergeBoard.UI.Popup
         [SerializeField] protected TMP_Text questNameText;
         [SerializeField] protected Transform questConditionItemSlotParent;
         [SerializeField] protected Transform questRewardItemSlotParent;
+        [SerializeField] protected ButtonWithSoundAndBounce submitButton;
         
         private List<ItemSlotData> _conditionItemSlotDataList = new();
         private List<RewardSlotData> _rewardSlotDataList = new();
@@ -88,6 +91,9 @@ namespace MergeBoard.UI.Popup
                 _rewardSlotDataList.Add(rewardSlotData);
             }
             _rewardSlotController.ApplyData(_rewardSlotDataList);
+
+            if (submitButton)
+                submitButton.interactable = InitData.QuestData.CheckIsDone();
         }
         
         public void OnClickSubmit()

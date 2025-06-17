@@ -15,6 +15,19 @@ namespace MergeBoard.UI.Common
 
         private Coroutine _bounceRoutine;
 
+        public new bool interactable 
+        {
+            get => base.interactable;
+            set
+            {
+                var bk = transition;
+                if (transition == Transition.None)
+                    transition = Transition.ColorTint;
+                base.interactable = value;
+                transition = bk;
+            }
+        }
+        
         private void SetScale(float scale)
         {
             transform.localScale = new Vector3(scale, scale, scale);
@@ -23,11 +36,18 @@ namespace MergeBoard.UI.Common
         protected override void Awake()
         {
             base.Awake();
+            var c = ColorBlock.defaultColorBlock;
+            c.disabledColor = new Color32(200, 200, 200, 255);
+            c.fadeDuration = 0f;
+            colors = c;
             transition = Transition.None;
         }
 
         public override void OnPointerDown(PointerEventData eventData)
         {
+            if (!IsInteractable())
+                return;
+            
             base.OnPointerDown(eventData);
             if (_bounceRoutine != null)
             {
@@ -39,12 +59,18 @@ namespace MergeBoard.UI.Common
 
         public override void OnPointerUp(PointerEventData eventData)
         {
+            if (!IsInteractable())
+                return;
+            
             base.OnPointerUp(eventData);
             SetScale(1f);
         }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
+            if (!IsInteractable())
+                return;
+            
             base.OnPointerClick(eventData);
             SoundManager.Instance.PlaySFX(soundKey);
             if (gameObject.activeInHierarchy)
