@@ -5,6 +5,7 @@
     "com.alpolib.res": "https://github.com/pumperer/AlpoLib-Res.git",
     "com.alpolib.ui": "https://github.com/pumperer/AlpoLib-UI.git",
     "com.alpolib.util": "https://github.com/pumperer/AlpoLib-Util.git",
+    "com.azixmcaze.unityserializabledictionary": "1.2.0",
     "com.unity.2d.animation": "10.2.0",
     "com.unity.2d.aseprite": "1.2.5",
     "com.unity.2d.psdimporter": "10.1.1",
@@ -51,5 +52,17 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.azixmcaze",
+        "com.coffee",
+        "com.cysharp"
+      ],
+      "overrideBuiltIns": true
+    }
+  ]
 }
