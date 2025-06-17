@@ -18,6 +18,8 @@ namespace MergeBoard.Readme
 
         private static void AutoOpenReadmeWindow()
         {
+            if (EditorPrefs.GetBool("DoNotOpenReadme", true))
+                return;
             Open();
         }
         
@@ -60,8 +62,19 @@ namespace MergeBoard.Readme
                         EditorApplication.EnterPlaymode();
                     }
                 }
+                EditorGUILayout.Space(20);
+                if (GUILayout.Button("다시보지않기"))
+                {
+                    CheckDoNotOpenReadme();
+                    Close();
+                }
             }
             EditorGUILayout.EndVertical();
+        }
+        
+        private void CheckDoNotOpenReadme()
+        {
+            EditorPrefs.SetBool("DoNotOpenReadme", true);
         }
     }
 }
