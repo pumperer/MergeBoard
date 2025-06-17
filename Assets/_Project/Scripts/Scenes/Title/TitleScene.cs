@@ -3,6 +3,7 @@ using alpoLib.Data;
 using alpoLib.UI.Scene;
 using alpoLib.Util;
 using MergeBoard.Data.Table;
+using MergeBoard.Sound;
 using MergeBoard.UI;
 using MergeBoard.UI.Scenes;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace MergeBoard.Scenes
         public override void OnOpen()
         {
             LoadSequence();
+            SoundManager.Instance.PlayBGM(BGMKey.bgm_main, true);
         }
 
         private void LoadSequence()

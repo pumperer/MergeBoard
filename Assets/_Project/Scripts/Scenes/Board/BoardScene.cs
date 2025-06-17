@@ -58,7 +58,6 @@ namespace MergeBoard.Scenes
             base.OnClose();
             _mergeBoard.OnClose();
             InitData.UserBoardMapper.SetBoardSerializer(null);
-            SoundManager.Instance.StopBGM();
         }
 
         protected override void OnUpdate()
