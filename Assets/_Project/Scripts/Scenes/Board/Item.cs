@@ -4,6 +4,7 @@ using alpoLib.Res;
 using alpoLib.Util;
 using MergeBoard.Data.Composition;
 using MergeBoard.Utility;
+using MergeBoard.VFX;
 using UnityEngine;
 
 namespace MergeBoard.Scenes.Board
@@ -131,9 +132,10 @@ namespace MergeBoard.Scenes.Board
             return true;
         }
 
-        public void OnCancelMove()
+        public void OnCancelMove(Action onComplete = null)
         {
-            SpringPosition.Begin(gameObject, Vector3.zero, 20f);
+            var spring = SpringPosition.Begin(gameObject, Vector3.zero, 20f);
+            spring.OnFinished = onComplete != null ? new SpringPosition.OnFinishedDelegate(onComplete) : null;
         }
     }
 }

@@ -22,10 +22,17 @@ namespace MergeBoard.Scenes
         {
             base.OnOpen();
 
+            AwaitableHelper.Run(InitializeMergeBoardAsync);
+            
+            SoundManager.Instance.PlayBGM(InitData.BoardDefine.BGMKey, true);
+        }
+        
+        private async Awaitable InitializeMergeBoardAsync()
+        {
             try
             {
                 _mergeBoard = GenericPrefab.InstantiatePrefab<Board.MergeBoard>();
-                _mergeBoard.Initialize(new Board.MergeBoard.Context
+                await _mergeBoard.InitializeAsync(new Board.MergeBoard.Context
                 {
                     BoardDefine = InitData.BoardDefine,
                     ItemTableMapper = InitData.ItemTableMapper,
@@ -44,8 +51,6 @@ namespace MergeBoard.Scenes
                 Debug.LogException(e);
                 throw e;
             }
-            
-            SoundManager.Instance.PlayBGM(InitData.BoardDefine.BGMKey, true);
         }
 
         public override void OnClose()

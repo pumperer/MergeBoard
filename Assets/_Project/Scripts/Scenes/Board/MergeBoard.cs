@@ -9,7 +9,9 @@ using MergeBoard.Data.Table;
 using MergeBoard.Data.User;
 using MergeBoard.Scenes.Board.Feature;
 using MergeBoard.Sound;
+using MergeBoard.VFX;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace MergeBoard.Scenes.Board
 {
@@ -58,13 +60,15 @@ namespace MergeBoard.Scenes.Board
             UserItemData.OnDeleteUserItem -= OnUserItemDelete;
         }
 
-        public void Initialize(Context context)
+        public async Awaitable InitializeAsync(Context context)
         {
             _context = context;
             CreateBoard();
             ResizeCameraOrthoSize(new Resolution { width = Screen.width, height = Screen.height });
             RefreshQuestStatus();
             InitFeatures();
+
+            await InitializeVfxAsync();
         }
 
         public void OnOpen()
@@ -79,6 +83,12 @@ namespace MergeBoard.Scenes.Board
         {
             foreach (var feature in _features)
                 feature.OnClose();
+        }
+        
+        private async Awaitable InitializeVfxAsync()
+        {
+            await Addressables.InstantiateAsync("Addr/VFX/VfxResourceHolder.prefab").Wait();
+            await VfxResourceHolder.Instance.LoadAsync();
         }
         
         private void CreateBoard()

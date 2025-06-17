@@ -1,5 +1,7 @@
+using System;
 using alpoLib.Res;
 using MergeBoard.Scenes.Board.Feature;
+using MergeBoard.VFX;
 using UnityEngine;
 
 namespace MergeBoard.Scenes.Board
@@ -57,12 +59,12 @@ namespace MergeBoard.Scenes.Board
                 SetBGColor(false);
         }
         
-        public void RepositionItem(bool animated)
+        public void RepositionItem(bool animated, Action onComplete = null)
         {
             if (currentItem != null)
             {
                 if (animated)
-                    currentItem.OnCancelMove();
+                    currentItem.OnCancelMove(onComplete);
                 else
                     currentItem.transform.localPosition = Vector3.zero;
             }
@@ -150,6 +152,7 @@ namespace MergeBoard.Scenes.Board
                 mergedItem.SetSlot(this);
                 SetItem(mergedItem);
                 RepositionItem(false);
+                VfxResourceHolder.Instance.Get("merge-item-vfx").Play(transform.position);
                 Board.OnMerge(currentItem, item, mergedItem);
             }
             else

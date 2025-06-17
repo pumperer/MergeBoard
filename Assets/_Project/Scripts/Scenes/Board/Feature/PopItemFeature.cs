@@ -4,6 +4,7 @@ using MergeBoard.Data.Composition;
 using MergeBoard.Data.Table;
 using MergeBoard.Data.User;
 using MergeBoard.Sound;
+using MergeBoard.VFX;
 using UnityEngine;
 
 namespace MergeBoard.Scenes.Board.Feature
@@ -51,7 +52,10 @@ namespace MergeBoard.Scenes.Board.Feature
                 newItem.SetSlot(targetSlot);
                 newItem.transform.position = fromPos;
                 targetSlot.SetItem(newItem);
-                targetSlot.RepositionItem(true);
+                targetSlot.RepositionItem(true, () =>
+                {
+                    VfxResourceHolder.Instance.Get("pop-item-vfx").Play(targetSlot.transform.position);
+                });
             }
             SoundManager.Instance.PlaySFX(SFXKey.sfx_board_item_pop);
             return newItem;

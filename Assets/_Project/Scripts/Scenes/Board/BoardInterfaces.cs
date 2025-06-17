@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace MergeBoard.Scenes.Board
@@ -20,7 +21,7 @@ namespace MergeBoard.Scenes.Board
     public interface IMovable : IBoardInterfaceBase
     {
         bool OnMove(Vector3 worldPos);
-        void OnCancelMove();
+        void OnCancelMove(Action onComplete = null);
     }
 
     public interface IMovableReceiver : IBoardInterfaceBase
