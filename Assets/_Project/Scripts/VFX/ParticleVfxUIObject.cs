@@ -4,9 +4,9 @@ namespace MergeBoard.VFX
 {
     public class ParticleVfxUIObject : ParticleVfxObject
     {
-        public override async Awaitable Play(RectTransform rectTransform, bool autoRelease = true)
+        public override async Awaitable Play(RectTransform target, bool autoRelease = true)
         {
-            var p = rectTransform.TransformPoint(rectTransform.anchoredPosition);
+            var p = transform.TransformPoint(target.localPosition);
             await Play(p, autoRelease);
         }
     }

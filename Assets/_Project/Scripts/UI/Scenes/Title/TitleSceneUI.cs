@@ -64,8 +64,7 @@ namespace MergeBoard.UI.Scenes
                 {
                     var parent = UIRoot.Instance.ForwardCanvas as RectTransform;
                     p.transform.SetParentEx(parent);
-                    var target = parent.TransformPoint(logoTransform.localPosition);
-                    AwaitableHelper.Run(() => p.Play(target));
+                    AwaitableHelper.Run(() => p.Play(logoTransform));
                     yield return new WaitForSeconds(Random.Range(1.5f, 3f));
                 }
             }

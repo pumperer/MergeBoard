@@ -32,7 +32,7 @@ namespace MergeBoard.VFX
             throw new System.NotImplementedException("Play(Vector3) method must be overridden in derived class.");
         }
         
-        public virtual Awaitable Play(RectTransform rectTransform, bool autoRelease = true)
+        public virtual Awaitable Play(RectTransform target, bool autoRelease = true)
         {
             throw new System.NotImplementedException("Play(RectTransform) method must be overridden in derived class.");
         }
