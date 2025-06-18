@@ -25,21 +25,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2050233e8c225e2448ecaa738fc5ff9d
-    m_Address: Addr/Sound/SFX/sfx_hexa_makebomb
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 272d52b1bc01e1246aeed4afc6e0f94d
-    m_Address: Addr/Sound/BGM/bgm_hexablast_board
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3f6f654d6d306d8478efbd90159650db
-    m_Address: Addr/Sound/SFX/sfx_hexa_destroyitem
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4396e48a45dc3a24da2073081c3c09c6
     m_Address: Addr/Sound/SFX/sfx_splash
     m_ReadOnly: 0
@@ -72,21 +57,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5cb7f5711a8fb545b5c86aa3acef895
     m_Address: Addr/Sound/BGM/bgm_main
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c0ae9c74584d89440b9035a7c779e244
-    m_Address: Addr/Sound/SFX/sfx_hexa_swap
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d04323c86ec9c454a86769700b897eee
-    m_Address: Addr/Sound/SFX/sfx_hexa_land
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d41281e6fa80f69499b810e87b2285e3
-    m_Address: Addr/Sound/SFX/sfx_hexa_error
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
