@@ -17,7 +17,6 @@ namespace MergeBoard.Sound
 		bgm_main,
 		bgm_alphabet_board,
 		bgm_number_board,
-		bgm_hexablast_board,
 	}
 
 	public enum SFXKey
@@ -31,11 +30,6 @@ namespace MergeBoard.Sound
 		sfx_click,
 		sfx_cancel,
 		sfx_sell,
-		sfx_hexa_land,
-		sfx_hexa_error,
-		sfx_hexa_makebomb,
-		sfx_hexa_swap,
-		sfx_hexa_destroyitem,
 	}
 
 	internal enum BGMChannel

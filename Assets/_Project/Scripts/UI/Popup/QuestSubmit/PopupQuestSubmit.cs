@@ -5,6 +5,7 @@ using alpoLib.Res;
 using alpoLib.UI;
 using MergeBoard.Data.Composition;
 using MergeBoard.Data.User;
+using MergeBoard.Sound;
 using MergeBoard.UI.Common;
 using TMPro;
 using UnityEngine;
@@ -102,6 +103,7 @@ namespace MergeBoard.UI.Popup
             {
                 InitData.QuestData.CompleteQuest();
                 InitData.QuestSubmitCallback?.Invoke(InitData.QuestData);
+                SoundManager.Instance.PlaySFX(SFXKey.sfx_success);
                 Close();
             }
             else
