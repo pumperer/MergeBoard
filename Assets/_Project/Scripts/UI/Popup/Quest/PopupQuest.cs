@@ -33,7 +33,8 @@ namespace MergeBoard.UI.Popup
 
             var prefab = GenericPrefab.LoadPrefab<QuestSlot>();
             _slotPool = new DefaultObjectPool<QuestSlot>(prefab.gameObject);
-
+            
+            _questDataList = InitData.UserQuestMapper.GetAllQuestDatas(InitData.CurrentBoardId).ToList();
             RefreshQuestList();
         }
 
@@ -69,11 +70,10 @@ namespace MergeBoard.UI.Popup
             return _questDataList.Count;
         }
 
-        private void RefreshQuestList()
+        private void RefreshQuestList(bool reposition = true)
         {
-            _questDataList = InitData.UserQuestMapper.GetAllQuestDatas(InitData.CurrentBoardId).ToList();
             _questDataList.Sort((a, b) => b.CheckIsDone().CompareTo(a.CheckIsDone()));
-            tableView.RefreshAll(true);
+            tableView.RefreshAll(reposition);
             emptyObject.SetActive(_questDataList.Count == 0);
         }
         
@@ -100,7 +100,8 @@ namespace MergeBoard.UI.Popup
         private void OnQuestSubmit(QuestData data)
         {
             _questDataList.Remove(data);
-            tableView.RefreshAll();
+            RefreshQuestList(false);
+            InitData.QuestSubmitCallback?.Invoke();
         }
     }
 

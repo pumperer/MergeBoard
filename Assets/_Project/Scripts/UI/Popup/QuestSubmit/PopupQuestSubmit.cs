@@ -101,7 +101,7 @@ namespace MergeBoard.UI.Popup
         {
             if (InitData.QuestData.CheckIsDone())
             {
-                InitData.QuestData.CompleteQuest();
+                InitData.UserQuestMapper.CompleteQuest(InitData.QuestData);
                 InitData.QuestSubmitCallback?.Invoke(InitData.QuestData);
                 SoundManager.Instance.PlaySFX(SFXKey.sfx_success);
                 Close();
@@ -124,6 +124,7 @@ namespace MergeBoard.UI.Popup
         public QuestData QuestData;
         public Action<QuestData> QuestSubmitCallback;
         public IUserItemMapper UserItemMapper;
+        public IUserQuestMapper UserQuestMapper;
     }
 
     public class PopupQuestSubmitLoadingBlock : PopupLoadingBlock<PopupQuestSubmitParam, PopupQuestSubmitInitData>
@@ -134,7 +135,8 @@ namespace MergeBoard.UI.Popup
             {
                 QuestData = param.QuestData,
                 QuestSubmitCallback = param.QuestSubmitCallback,
-                UserItemMapper = UserDataManager.GetLoader<IUserItemMapper>()
+                UserItemMapper = UserDataManager.GetLoader<IUserItemMapper>(),
+                UserQuestMapper = UserDataManager.GetLoader<IUserQuestMapper>(),
             };
         }
     }
