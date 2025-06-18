@@ -4,7 +4,9 @@ using alpoLib.Data;
 using alpoLib.UI.Scene;
 using alpoLib.Util;
 using MergeBoard.Data.Table;
+using MergeBoard.VFX;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace MergeBoard.Scenes
 {
@@ -68,7 +70,7 @@ namespace MergeBoard.Scenes
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)
         {
             await alpoLib.Data.Module.LoadTableDataAsync();
-            await Awaitable.WaitForSecondsAsync(0.5f);
+            await Awaitable.WaitForSecondsAsync(0.25f);
         }
     }
     
@@ -80,7 +82,7 @@ namespace MergeBoard.Scenes
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)
         {
             await alpoLib.Data.Module.LoadUserDataAsync();
-            await Awaitable.WaitForSecondsAsync(0.5f);
+            await Awaitable.WaitForSecondsAsync(0.25f);
         }
     }
     
@@ -98,21 +100,22 @@ namespace MergeBoard.Scenes
         public override int Progress => 100;
         public override string ProgressMessage => "Let's Go!";
         
-        private readonly Action<List<BoardDefineBase>> _switchToMenuAction;
+        private readonly Action<List<BoardDefineBase>> _showMenuSeq;
         
-        public LoadingTaskShowMenu(Action<List<BoardDefineBase>> switchToMenuAction)
+        public LoadingTaskShowMenu(Action<List<BoardDefineBase>> showMenuSeq)
         {
             _temporaryDataHolder = new TemporaryDataHolder();
-            _switchToMenuAction = switchToMenuAction;
+            _showMenuSeq = showMenuSeq;
 
             GameStateManager.Instance.GetState<DataLoadCompleteHolder>();
         }
         
         protected override async Awaitable OnLoadingAsync(LoadingTaskMachine machine)
         {
-            await Awaitable.WaitForSecondsAsync(0.5f);
+            await Addressables.InstantiateAsync("Addr/VFX/VfxResourceHolderOutGame.prefab").Wait();
+            await VfxResourceHolder.Instance.LoadAsync();
             var list = _temporaryDataHolder.GetBoardDefines();
-            _switchToMenuAction?.Invoke(list);
+            _showMenuSeq?.Invoke(list);
         }
     }
 }

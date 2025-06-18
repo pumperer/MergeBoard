@@ -712,6 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiCamera: {fileID: 0}
   useScenePopupTrack: 0
+  logoTransform: {fileID: 1315043176}
   loadingProgressComp: {fileID: 1778058299}
   menuObject: {fileID: 1433846348}
 --- !u!114 &1440420840

@@ -5,9 +5,9 @@ namespace MergeBoard.VFX
 {
     public class ParticleVfxObject : VfxObjectBase
     {
-        [SerializeField] private ParticleSystem particle;
+        [SerializeField] protected ParticleSystem particle;
 
-        private void Awake()
+        protected override void Awake()
         {
             particle ??= GetComponent<ParticleSystem>();
             if (!particle)
@@ -18,21 +18,9 @@ namespace MergeBoard.VFX
         {
             transform.position = position;
             particle.Play();
-            Awaitable endPlayAwaitable = null;
-            if (autoRelease)
-                endPlayAwaitable = ReleaseAutoAsync();
-            if (endPlayAwaitable != null)
-                await endPlayAwaitable;    
-        }
-
-        protected async Awaitable ReleaseAutoAsync()
-        {
-            // If the particle system is set to loop, we don't need to wait for it to finish.
             if (particle.main.loop)
                 return;
-            
-            await Awaitable.WaitForSecondsAsync(particle.main.duration);
-            AwaitableHelper.Run(() => ReleaseAsync());
+            await ReleaseAsync(particle.main.duration);
         }
     }
 }

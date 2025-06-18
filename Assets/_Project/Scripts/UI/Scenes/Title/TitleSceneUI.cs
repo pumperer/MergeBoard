@@ -1,9 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using alpoLib.Res;
 using alpoLib.UI;
 using alpoLib.UI.Scene;
 using MergeBoard.Data.Table;
 using MergeBoard.Scenes;
+using MergeBoard.VFX;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +13,16 @@ namespace MergeBoard.UI.Scenes
 {
     public class TitleSceneUI : SceneUIBase
     {
+        [SerializeField] RectTransform logoTransform;
         [SerializeField] private UIProgressComp loadingProgressComp;
         [SerializeField] private LayoutGroup menuObject;
-        
+
+        public override void OnClose()
+        {
+            base.OnClose();
+            StopAllCoroutines();
+        }
+
         public void OnLoadingProgressChanged(int progress, string message)
         {
             if (!loadingProgressComp)
@@ -34,6 +43,7 @@ namespace MergeBoard.UI.Scenes
             }
             
             menuObject.gameObject.SetActive(true);
+            StartCoroutine(PlayEffect());
         }
 
         private void OnClickBoardButton(BoardDefineBase boardDefine)
@@ -42,6 +52,23 @@ namespace MergeBoard.UI.Scenes
             {
                 BoardId = boardDefine.Id
             });
+        }
+
+        private IEnumerator PlayEffect()
+        {
+            yield return new WaitForSeconds(1f);
+            while (true)
+            {
+                var p = VfxResourceHolder.Instance.Get<ParticleVfxUIObject>("fanfare-vfx");
+                if (p)
+                {
+                    var parent = UIRoot.Instance.ForwardCanvas as RectTransform;
+                    p.transform.SetParentEx(parent);
+                    var target = parent.TransformPoint(logoTransform.localPosition);
+                    AwaitableHelper.Run(() => p.Play(target));
+                    yield return new WaitForSeconds(Random.Range(1.5f, 3f));
+                }
+            }
         }
     }
 }

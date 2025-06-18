@@ -83,11 +83,13 @@ namespace MergeBoard.Scenes.Board
         {
             foreach (var feature in _features)
                 feature.OnClose();
+            
+            VfxResourceHolder.Instance.Dispose();
         }
         
         private async Awaitable InitializeVfxAsync()
         {
-            await Addressables.InstantiateAsync("Addr/VFX/VfxResourceHolder.prefab").Wait();
+            await Addressables.InstantiateAsync("Addr/VFX/VfxResourceHolderInGame.prefab").Wait();
             await VfxResourceHolder.Instance.LoadAsync();
         }
         

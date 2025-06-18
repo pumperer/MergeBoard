@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6773349579691155018}
   - component: {fileID: 1400218338947325862}
   m_Layer: 0
-  m_Name: VfxResourceHolder
+  m_Name: VfxResourceHolderOutGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,20 +47,12 @@ MonoBehaviour:
   dontDestroy: 0
   vfxResDefines:
     m_keys:
-    - merge-item-vfx
-    - pop-item-vfx
+    - fanfare-vfx
     m_values:
     - vfxPrefab:
-        m_AssetGUID: f317eca6459cbe344a3371f41f50be9e
+        m_AssetGUID: 762c32433ce3d8943b38690c76187ef6
         m_SubObjectName: 
         m_SubObjectType: 
         m_SubObjectGUID: 
         m_EditorAssetChanged: 0
-      preloadCount: 10
-    - vfxPrefab:
-        m_AssetGUID: 13ca4ce28679e5749addf27c1f8a0989
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_SubObjectGUID: 
-        m_EditorAssetChanged: 0
-      preloadCount: 10
+      preloadCount: 3

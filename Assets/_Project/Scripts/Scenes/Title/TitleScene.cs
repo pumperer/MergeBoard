@@ -6,6 +6,7 @@ using MergeBoard.Data.Table;
 using MergeBoard.Sound;
 using MergeBoard.UI;
 using MergeBoard.UI.Scenes;
+using MergeBoard.VFX;
 using UnityEngine;
 
 namespace MergeBoard.Scenes
@@ -19,6 +20,15 @@ namespace MergeBoard.Scenes
         {
             LoadSequence();
             SoundManager.Instance.PlayBGM(BGMKey.bgm_main, true);
+        }
+        
+        public override void OnClose()
+        {
+            base.OnClose();
+            _loadingTaskMachine?.ClearState();
+            _loadingTaskMachine = null;
+            
+            VfxResourceHolder.Instance.Dispose();
         }
 
         private void LoadSequence()

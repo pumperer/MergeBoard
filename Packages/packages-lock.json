@@ -46,13 +46,23 @@
         "com.alpolib.core": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "3.2.1"
       },
-      "hash": "d1d12efc9b7408768bc132867bdee046b8819170"
+      "hash": "c6caa4c1a1c6b9192329370a67d14b322c272a25"
     },
     "com.azixmcaze.unityserializabledictionary": {
       "version": "1.2.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.coffee.ui-particle": {
+      "version": "4.11.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
       "url": "https://package.openupm.com"
     },
     "com.unity.2d.animation": {
