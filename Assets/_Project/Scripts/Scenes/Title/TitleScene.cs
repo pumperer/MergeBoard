@@ -22,9 +22,9 @@ namespace MergeBoard.Scenes
             SoundManager.Instance.PlayBGM(BGMKey.bgm_main, true);
         }
         
-        public override void OnClose()
+        public override void OnClosed()
         {
-            base.OnClose();
+            base.OnClosed();
             _loadingTaskMachine?.ClearState();
             _loadingTaskMachine = null;
             
